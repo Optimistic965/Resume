@@ -1,0 +1,80 @@
+Resumee/logs
+Resumee/*.log
+Resumee/npm-debug.log*
+Resumee/yarn-debug.log*
+Resumee/yarn-error.log*
+Resumee/pnpm-debug.log*
+Resumee/lerna-debug.log*
+
+Resumee/node_modules
+Resumee/dist
+Resumee/dist-ssr
+Resumee/*.local
+
+# Editor directories and files
+Resumee/.vscode/*
+Resumee/!.vscode/extensions.json
+Resumee/.idea
+Resumee/.DS_Store
+Resumee/*.suo
+Resumee/*.ntvs*
+Resumee/*.njsproj
+Resumee/*.sln
+Resumee/*.sw?
+
+# compiled output
+ResumeApi/dist
+ResumeApi/node_modules
+ResumeApi/build
+
+# Logs
+ResumeApi/logs
+ResumeApi/*.log
+ResumeApi/npm-debug.log*
+ResumeApi/pnpm-debug.log*
+ResumeApi/yarn-debug.log*
+ResumeApi/yarn-error.log*
+ResumeApi/lerna-debug.log*
+
+# OS
+ResumeApi/.DS_Store
+
+# Tests
+ResumeApi/coverage
+ResumeApi/.nyc_output
+
+# IDEs and editors
+ResumeApi/.idea
+ResumeApi/.project
+ResumeApi/.classpath
+ResumeApi/.c9/
+ResumeApi/*.launch
+ResumeApi/.settings/
+ResumeApi/*.sublime-workspace
+
+# IDE - VSCode
+ResumeApi/.vscode/*
+ResumeApi/!.vscode/settings.json
+ResumeApi/!.vscode/tasks.json
+ResumeApi/!.vscode/launch.json
+ResumeApi/!.vscode/extensions.json
+
+# dotenv environment variable files
+ResumeApi/.env
+ResumeApi/.env.development.local
+ResumeApi/.env.test.local
+ResumeApi/.env.production.local
+ResumeApi/.env.local
+
+# temp directory
+ResumeApi/.temp
+ResumeApi/.tmp
+
+# Runtime data
+ResumeApi/pids
+ResumeApi/*.pid
+ResumeApi/*.seed
+ResumeApi/*.pid.lock
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
