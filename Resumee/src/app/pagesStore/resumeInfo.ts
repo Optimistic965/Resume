@@ -69,101 +69,88 @@ const initialState: ResumeState = {
     },
 };
 
-export const profileStateSlice = createSlice({
-    name: 'profilesetup',
+export const resumeStateSlice = createSlice({
+    name: 'resume',
     initialState,
     reducers: {
-        setProfilePic: (state, action: PayloadAction<file>) => {
+        profilePic: (state, action: PayloadAction<file>) => {
             state.profileImage = action.payload;
         },
 
-        setProfileLink: (state, action: PayloadAction<string>) => {
-            state.profileLink = action.payload;
+        linkedInLink: (state, action: PayloadAction<string>) => {
+            state.linkedInLink = action.payload;
         },
 
-        setBiography: (state, action: PayloadAction<string>) => {
-            state.biography = action.payload;
+        firstName: (state, action: PayloadAction<string>) => {
+            state.firstName = action.payload;
         },
 
-        setProofOfAccreditation: (
-            state,
-            action: PayloadAction<filemetadata>
-        ) => {
-            state.proofOfAccreditation = action.payload;
+        dob: (state, action: PayloadAction<string>) => {
+            state.dob = action.payload;
         },
 
-        setPortfolioDocs: (state, action: PayloadAction<filemetadata>) => {
-            state.portfolioDocs = action.payload;
+        occupation: (state, action: PayloadAction<string>) => {
+            state.occupation = action.payload;
         },
 
-        setPerferredIndustry: (state, action: PayloadAction<string>) => {
-            state.prefIndustry = action.payload;
+        gender: (state, action: PayloadAction<string>) => {
+            state.gender = action.payload;
         },
 
-        startUpStage: (state, action: PayloadAction<string>) => {
-            state.startupStage = action.payload;
+        email: (state, action: PayloadAction<string>) => {
+            state.email = action.payload;
         },
 
-        setInvestmentSize: (state, action: PayloadAction<string>) => {
-            state.investmentSize = action.payload;
+        phoneNumber: (state, action: PayloadAction<string>) => {
+            state.phoneNumber = action.payload;
         },
 
-        setInvestmentGoal: (state, action: PayloadAction<string>) => {
-            state.investmentGoal = action.payload;
+        fax: (state, action: PayloadAction<string>) => {
+            state.fax = action.payload;
         },
 
-        setNotableInvestment: (state, action: PayloadAction<string>) => {
-            state.notableInvestment = action.payload;
+        address: (state, action: PayloadAction<string>) => {
+            state.address = action.payload;
         },
 
-        investorType: (state, action: PayloadAction<string>) => {
-            state.investorType = action.payload;
+        city: (state, action: PayloadAction<string>) => {
+            state.city = action.payload;
         },
 
-        setStartupDescription: (state, action: PayloadAction<string>) => {
-            state.startupDescrp = action.payload;
+        country: (state, action: PayloadAction<string>) => {
+            state.country = action.payload;
         },
 
-        setWebsiteLink: (state, action: PayloadAction<string>) => {
-            state.websiteLink = action.payload;
+        zipcode: (state, action: PayloadAction<string>) => {
+            state.zipcode = action.payload;
         },
 
-        setFoundingDate: (state, action: PayloadAction<string>) => {
-            state.foundingDate = action.payload;
+        academy: (state, action: PayloadAction<academy>) => {
+            state.academy.push(action.payload);
         },
 
-        setFundingStage: (state, action: PayloadAction<string>) => {
-            state.fundingStage = action.payload;
-        },
-
-        setEmployeeCount: (state, action: PayloadAction<number>) => {
-            state.employeeCount = action.payload;
-        },
-
-        setRevenue: (state, action: PayloadAction<string>) => {
-            state.revenue = action.payload;
+        setState: (state, action: PayloadAction<string>) => {
+            state.state = action.payload;
         },
     },
 });
 
 export const {
-    setBiography,
-    setEmployeeCount,
-    setFoundingDate,
-    setFundingStage,
-    setInvestmentGoal,
-    setInvestmentSize,
-    setNotableInvestment,
-    setPerferredIndustry,
-    setProfilePic,
-    setProfileLink,
-    setRevenue,
-    setStartupDescription,
-    setWebsiteLink,
-    investorType,
-    startUpStage,
-    setProofOfAccreditation,
-    setPortfolioDocs,
-} = profileStateSlice.actions;
+    academy,
+    address,
+    city,
+    country,
+    dob,
+    email,
+    fax,
+    firstName,
+    gender,
+    linkedInLink,
+    occupation,
+    phoneNumber,
+    profilePic,
+    setState,
+    zipcode
+} = resumeStateSlice.actions;
 
-export default profileStateSlice.reducer;
+export default resumeStateSlice.reducer;

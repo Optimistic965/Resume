@@ -13,8 +13,8 @@ export interface resumeSetPage {
 
 const initialState: resumeSetPage = {
     back: '',
-    current: 'personal info',
-    next: 'investment perf',
+    current: 'user info',
+    next: 'user contact',
 };
 
 export const resumePageSlice = createSlice({

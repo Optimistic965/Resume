@@ -35,7 +35,7 @@ export const Homepage = () => {
 
     return (
             <main id="page_layout" className="bg-white w-screen h-screen relative">
-            <header className="bg-secondary h-10vh text-3xl p-3 mb-4 shadow-md shadow-tertiary-2 sticky top-0 left-0">{pageTitle}</header>
+                <header className="bg-secondary h-10vh text-3xl p-3 mb-4 shadow-md shadow-tertiary-2 sticky top-0 left-0 uppercase">{pageTitle}</header>
                 <section className="main_cont">
                 <Outlet />
                 </section>
