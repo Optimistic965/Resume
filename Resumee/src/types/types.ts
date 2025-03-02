@@ -12,25 +12,30 @@ enum GenderEnum {
     male = "male",
 }
 
-// interface Academy {
-//     schoolName: string,
-// }
+export interface Academy {
+    schoolName: string
+}
 
-export interface IFormInput {
+export interface UserInfo {
     profilePicture: string,
     firstName: string,
     lastName: string,
     dob: string,
     occupation: string,
     gender: GenderEnum,
+}
+
+export interface UserContact {
     email: string,
     phoneNumber: number,
     fax?: number,
     linkedInLink?: string,
+}
+
+export interface UserAddress {
     address: string,
     city: string,
     state: string,
     country: string,
     zipcode: string,
-    schoolName: string
 }
