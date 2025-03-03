@@ -1,4 +1,5 @@
 import { useForm, SubmitHandler } from "react-hook-form";
+// import { DevTool } from '@hookform/devtools';
 import { useResumePage } from "../../hooks";
 import { UserInfo } from "../../types/types";
 
@@ -9,67 +10,85 @@ export const UserInfoForm = () => {
     const form = useForm<UserInfo>()
     const { register, handleSubmit, formState } = form
     const { errors } = formState;
-    const onSubmit: SubmitHandler<UserInfo> = (data) => console.log('formResponse', data)
+    const onSubmit: SubmitHandler<UserInfo> = (data) => {
+        updateCurrent('for');
+        console.log('formResponse', data)
+    }
     return (
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
-            <div>
-                <div id="input-cont" className="h-[40px] lg:w-[60%] md:w-[80%] mx-auto mb-7 flex justify-center flex-col">
-                    <label className="text-md pt-2 pr-[2em] w-[250px]">Profile Picture :</label>
-                    <input type="file" className="mt-2" {...register("profilePicture", {
-                        required: "Please upload a pic for profile"
-                    })} />
-                    <p className="text-red-500">{errors.profilePicture?.message}</p>
+        <>
+            <form onSubmit={handleSubmit(onSubmit)} noValidate>
+                <div>
+                    <div id="input-cont" className="h-[40px] lg:w-[60%] md:w-[80%] mx-auto mb-7 flex justify-center flex-col">
+                        <div>
+                            <label className="text-md pt-2 pr-[2em] w-[250px]">Profile Picture :</label>
+                            <span className="text-red-500">{errors.profilePicture?.message}</span>
+                        </div>
+                        <input type="file" className="mt-2" {...register("profilePicture", {
+                            required: "Please upload a pic for profile"
+                        })} />
+                        
+                    </div>
+                    <div id="input-cont" className="h-[40px] lg:w-[60%] md:w-[80%] mx-auto mb-7 flex justify-center align-middle flex-col">
+                        <div>
+                            <label className="text-md pt-2 pr-[2em] w-[250px]">First Name :</label>
+                            <span className="text-red-500">{errors.firstName?.message}</span>
+                        </div>
+                        <input placeholder="Input first name" className="border-2 px-2 mt-1 h-[50px] rounded-xl outline-0" {...register("firstName", {
+                            required: "First name is required"
+                        })} />
+                    </div>
+                    <div id="input-cont" className="h-[40px] lg:w-[60%] md:w-[80%] mx-auto mb-7 flex justify-center align-middle flex-col">
+                        <div>
+                            <label className="text-md pt-2 pr-[2em] w-[250px]">Last Name :</label>
+                            <span className="text-red-500">{errors.lastName?.message}</span>
+                        </div>
+                        <input placeholder="Input last name"  className="border-2 px-2 mt-1 h-[50px] rounded-xl outline-0" {...register("lastName", {
+                            required: "Last name is required"
+                        })} />
+                        
+                    </div>
+                    <div id="input-cont" className="h-[40px] lg:w-[60%] md:w-[80%] mx-auto mb-7 flex justify-center align-middle flex-col">
+                        <div>
+                            <label className="text-md pt-2 pr-[2em] w-[250px]">Date of Birth :</label>
+                            <span className="text-red-500">{errors.dob?.message}</span>
+                        </div>
+                        <input type="date" placeholder="Enter date of birth" className="border-2 px-2 mt-1 h-[50px] rounded-xl outline-0" {...register("dob", {
+                            valueAsDate: true,
+                            required: "Please select date"
+                        })} />
+                    </div>
+                    <div id="input-cont" className="h-[40px] lg:w-[60%] md:w-[80%] mx-auto mb-7 flex justify-center align-middle flex-col">
+                        <div>
+                            <label className="text-md pt-2 pr-[2em] w-[250px]">Occupation :</label>
+                            <span className="text-red-500">{errors.occupation?.message}</span>
+                        </div>
+                        <input placeholder="What's your occupation" className="border-2 px-2 mt-1 h-[50px] rounded-xl outline-0" {...register("occupation", {
+                            required: "What's your occupation?"
+                        })} />
+                    </div>
+                    <div id="input-cont" className="h-[40px] lg:w-[60%] md:w-[80%] mx-auto mb-7 flex justify-center align-middle flex-col">
+                        <div>
+                            <label className="text-md pt-2 pr-[2em] w-[250px]">Gender</label>
+                            <span className="text-red-500">{errors.gender?.message}</span>
+                        </div>
+                        <select {...register("gender", {
+                            required: "Gender can't be undefined"
+                        })}>
+                            <option value="">Select gender</option>
+                            <option value="female">female</option>
+                            <option value="male">male</option>
+                        </select>
+                    </div>
                 </div>
-                <div id="input-cont" className="h-[40px] lg:w-[60%] md:w-[80%] mx-auto mb-7 flex justify-center align-middle flex-col">
-                    <label className="text-md pt-2 pr-[2em] w-[250px]">First Name :</label>
-                    <input placeholder="Input first name" className="border-2 px-2 mt-1 h-[50px] rounded-xl outline-0" {...register("firstName", {
-                        required: "First name is required"
-                    })} />
-                    <p className="text-red-500">{errors.firstName?.message}</p>
+                <div className="w-[40%] my-3 mx-auto flex justify-evenly">
+                    <input
+                        className="w-[100px] py-2 mr-4 bg-secondary-2 text-white text-xl shadow-md shadow-tertiary-2 rounded-md cursor-pointer"
+                        type="submit"
+                        value='next'
+                    />
                 </div>
-                <div id="input-cont" className="h-[40px] lg:w-[60%] md:w-[80%] mx-auto mb-7 flex justify-center align-middle flex-col">
-                    <label className="text-md pt-2 pr-[2em] w-[250px]">Last Name :</label>
-                    <input placeholder="Input last name"  className="border-2 px-2 mt-1 h-[50px] rounded-xl outline-0" {...register("lastName", {
-                        required: "Last name is required"
-                    })} />
-                    <p className="text-red-500">{errors.lastName?.message}</p>
-                </div>
-                <div id="input-cont" className="h-[40px] lg:w-[60%] md:w-[80%] mx-auto mb-7 flex justify-center align-middle flex-col">
-                    <label className="text-md pt-2 pr-[2em] w-[250px]">Date of Birth :</label>
-                    <input placeholder="Enter date of birth" className="border-2 px-2 mt-1 h-[50px] rounded-xl outline-0" {...register("dob", {
-                        required: "Please select date"
-                    })} />
-                    <p className="text-red-500">{errors.dob?.message}</p>
-                </div>
-                <div id="input-cont" className="h-[40px] lg:w-[60%] md:w-[80%] mx-auto mb-7 flex justify-center align-middle flex-col">
-                    <label className="text-md pt-2 pr-[2em] w-[250px]">Occupation :</label>
-                    <input placeholder="What's your occupation" className="border-2 px-2 mt-1 h-[50px] rounded-xl outline-0" {...register("occupation", {
-                        required: "What's your occupation?"
-                    })} />
-                    <p className="text-red-500">{errors.occupation?.message}</p>
-                </div>
-                <div id="input-cont" className="h-[40px] lg:w-[60%] md:w-[80%] mx-auto mb-7 flex justify-center align-middle flex-col">
-                    <label className="text-md pt-2 pr-[2em] w-[250px]">Gender</label>
-                    <select {...register("gender", {
-                        required: "Gender can't be undefined"
-                    })}>
-                        <option value="female">female</option>
-                        <option value="male">male</option>
-                    </select>
-                    <p className="text-red-500">{errors.gender?.message}</p>
-                </div>
-            </div>
-            <div className="w-[40%] my-3 mx-auto flex justify-evenly">
-                <button
-                    className="w-[100px] py-2 mr-4 bg-secondary-2 text-white text-xl shadow-md shadow-tertiary-2 rounded-md cursor-pointer"
-                    type="submit"
-                    onClick={() => {
-                        updateCurrent('for');
-                    }}
-                >
-                    Next
-                </button>
-            </div>
-        </form>
+            </form>
+            {/* <DevTool control={control} /> */}
+        </>
     )
 }

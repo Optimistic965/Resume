@@ -8,19 +8,22 @@ export type ResumeCardTypes = {
 }
 
 enum GenderEnum {
+    none = "",
     female = "female",
     male = "male",
 }
 
 export interface Academy {
-    schoolName: string
+    academy: {
+        schoolName: string
+    }[]
 }
 
 export interface UserInfo {
     profilePicture: string,
     firstName: string,
     lastName: string,
-    dob: string,
+    dob: Date,
     occupation: string,
     gender: GenderEnum,
 }

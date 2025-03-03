@@ -18,19 +18,6 @@ export const useResumePage = () => {
         dispatch(updateState(obj))
     };
 
-    // const submitProfileInfo = () => {
-    //     setIsLoading(true, 'Updating account profile');
-    //     const obj = {
-    //         back: '',
-    //         current: 'account pending',
-    //         next: '',
-    //     };
-    //     updatePageInfo(obj);
-    //     setTimeout(() => {
-    //         setIsLoading(false, '');
-    //     }, 3000)
-    // };
-
     const updateCurrent = (direction: string) => {
         /**
          * direction can either be "for" as in "forward" {means make current to be value of next and then update next}
