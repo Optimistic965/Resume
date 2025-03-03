@@ -14,6 +14,8 @@ const View = ({ resourceType }: { resourceType: string}) => {
             setData(resumeInfo)
         }
     }, [])
+
+    console.log(data)
     return (
         <div>
             Resume view
