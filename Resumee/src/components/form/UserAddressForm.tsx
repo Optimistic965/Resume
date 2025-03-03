@@ -8,6 +8,7 @@ export const UserAddressForm = () => {
     } = useResumePage()
 
     const {
+        resumeInfo,
         updateAddress,
         updateCity,
         updateCountry,
@@ -15,7 +16,15 @@ export const UserAddressForm = () => {
         updateZipcode
     } = useFormHook()
 
-    const form = useForm<UserAddress>()
+    const form = useForm<UserAddress>({
+        defaultValues: {
+            address: resumeInfo.address,
+            city: resumeInfo.city,
+            state: resumeInfo.state,
+            country: resumeInfo.country,
+            zipcode: resumeInfo.zipcode
+        }
+    })
     const { register, handleSubmit, formState } = form
     const { errors } = formState;
 

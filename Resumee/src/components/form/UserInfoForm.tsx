@@ -9,6 +9,7 @@ export const UserInfoForm = () => {
     } = useResumePage()
 
     const {
+        resumeInfo,
         updateProfilePic,
         updateFirstName,
         updateLastName,
@@ -17,7 +18,16 @@ export const UserInfoForm = () => {
         updateDOB
     } = useFormHook()
 
-    const form = useForm<UserInfo>()
+    const form = useForm<UserInfo>({
+        defaultValues: {
+            dob: new Date(resumeInfo.dob),
+            firstName: resumeInfo.firstName,
+            lastName: resumeInfo.lastName,
+            occupation: resumeInfo.occupation,
+            // gender: resumeInfo.gender,
+            // profilePicture: resumeInfo.profileImage.localUrl? [new File([""], resumeInfo.profileImage.fileMetaD.name)] : []
+        }
+    })
     const { register, handleSubmit, formState } = form
     const { errors } = formState;
 
@@ -37,11 +47,12 @@ export const UserInfoForm = () => {
                 webkitRelativePath: data.profilePicture[0].webkitRelativePath
             }
         }
-        updateProfilePic(fileInfo),
-        updateFirstName(data.firstName),
+
+        updateProfilePic(fileInfo)
+        updateFirstName(data.firstName)
         updateLastName(data.lastName)
-        updateGender(data.gender),
-        updateOccupation(data.occupation),
+        updateGender(data.gender)
+        updateOccupation(data.occupation)
         updateDOB(data.dob)
 
         updateCurrent('for');

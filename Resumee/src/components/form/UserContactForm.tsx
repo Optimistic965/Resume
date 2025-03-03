@@ -8,13 +8,21 @@ export const UserContactForm = () => {
     } = useResumePage()
 
     const {
+        resumeInfo,
         updateEmail,
         updatePhoneNumber,
         updateFax,
         updateLinkedInLink
     } = useFormHook()
 
-    const form = useForm<UserContact>()
+    const form = useForm<UserContact>({
+        defaultValues: {
+            email: resumeInfo.email,
+            phoneNumber: resumeInfo.phoneNumber,
+            fax: resumeInfo.fax,
+            linkedInLink: resumeInfo.linkedInLink,
+        }
+    })
     const { register, handleSubmit, formState } = form
     const { errors } = formState;
 

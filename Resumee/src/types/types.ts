@@ -32,8 +32,8 @@ export interface UserInfo {
 
 export interface UserContact {
     email: string,
-    phoneNumber: number,
-    fax?: number,
+    phoneNumber: string,
+    fax?: string,
     linkedInLink?: string,
 }
 

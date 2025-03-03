@@ -37,7 +37,7 @@ export const CreateResume = () => {
                         <p className="text-xl uppercase">{current}</p>
                     </>
                 )}
-                <section className="max-h-[60vh] overflow-y-scroll p-7 rounded-3xl backdrop-blur-xs shadow-lg">
+                <section className="overflow-y-scroll p-7 rounded-3xl backdrop-blur-xs">
                     {/* <OwnForm /> */}
                     {current === 'user info' &&
                         <UserInfoForm />}
