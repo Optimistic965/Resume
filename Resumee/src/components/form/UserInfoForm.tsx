@@ -98,7 +98,17 @@ export const UserInfoForm = () => {
                         </div>
                         <input type="date" placeholder="Enter date of birth" className="border-2 px-2 mt-1 h-[50px] rounded-xl outline-0" {...register("dob", {
                             valueAsDate: true,
-                            required: "Please select date"
+                            required: "Please select date",
+                            validate: (date) => {
+                                if (!date) return "Date is required";
+                              
+                                const selectedDate = new Date(date);
+                                const today = new Date();
+                                const minAllowedDate = new Date();
+                                minAllowedDate.setFullYear(today.getFullYear() - 16);
+                              
+                                return selectedDate > minAllowedDate ? "User must be 16 years or older" : true;
+                            }
                         })} />
                     </div>
                     <div id="input-cont" className="h-[40px] lg:w-[60%] md:w-[80%] mx-auto mb-7 flex justify-center align-middle flex-col">

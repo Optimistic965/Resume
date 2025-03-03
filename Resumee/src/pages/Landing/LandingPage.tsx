@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { NavLink } from "react-router"
+import axios from 'axios'
 import { Card } from "../../components/resumecard/Card"
 import { ResumeCardTypes } from "../../types/types"
 
@@ -7,7 +8,16 @@ export const LandingPage = () => {
     const [availableResume, setAvailableResume] = useState([])
 
     useEffect(() => {
-        setAvailableResume([])
+        const getResume = async () => {
+            const resp = await axios.get("http://localhost:3000/user")
+            if(resp.status === 200) {
+                setAvailableResume(resp.data)
+            } else {
+                setAvailableResume([])
+            }
+        }
+
+        getResume()
     }, [])
 
     return (
