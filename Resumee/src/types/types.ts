@@ -1,3 +1,5 @@
+import { filemetadata } from "../app/pagesStore/resumeInfo"
+
 export type ResumeCardTypes = {
     id: number,
     firstName: string,
@@ -20,7 +22,7 @@ export interface Academy {
 }
 
 export interface UserInfo {
-    profilePicture: string,
+    profilePicture: filemetadata[],
     firstName: string,
     lastName: string,
     dob: Date,

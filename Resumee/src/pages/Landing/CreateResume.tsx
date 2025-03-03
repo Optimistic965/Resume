@@ -1,8 +1,10 @@
 // import { useEffect, useState } from "react"; useFormHook
-import { useForm } from "react-hook-form"
+// import { useForm } from "react-hook-form"
+import { useEffect } from "react";
 import { UserAcademyForm, UserAddressForm, UserContactForm, UserInfoForm } from "../../components/form";
-import { useResumePage } from "../../hooks"
+import { useResumePage, useFormHook } from "../../hooks"
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import View from "../../components/resumeview/View";
 // import { IFormInput } from "../../types/types";
 export const CreateResume = () => {
     const {
@@ -10,29 +12,15 @@ export const CreateResume = () => {
         updateCurrent
     } = useResumePage()
 
-    // const [school, setSchool] = useState('')
+    const {
+        resumeInfo
+    } = useFormHook()
 
-    // const {
-    //     resumeInfo,
-    //     addAcademy,
-    //     updateFirstName,
-    //     updateDOB,
-    //     updateOccupation,
-    //     updateGender,
-    //     updateEmail,
-    //     updatePhoneNumber,
-    //     updateFax,
-    //     updateAddress,
-    //     updateCity,
-    //     updateState,
-    //     updateCountry,
-    //     updateZipCode,
-    // } = useFormHook()
-
-    // const form = useForm<IFormInput>()
-    // const { control, register, handleSubmit} = form
-    // const { errors } = formState;
-    // const onSubmit: SubmitHandler<IFormInput> = (data) => console.log('formResponse', data)
+    useEffect(() => {
+        if(current === 'review page') {
+            console.log(resumeInfo)
+        }
+    }, [current])
 
     return (
         <main className="lg:w-[60%] mx-auto h-[80vh] overflow-y-scroll">
@@ -59,7 +47,8 @@ export const CreateResume = () => {
                         <UserAddressForm />}
                     {current === 'user academy' &&
                         <UserAcademyForm />}
-                    {current === 'review page' && <div>User Review</div>}
+                    {current === 'review page' &&
+                        <View resourceType="localState"/>}
                 </section>
             </section>
         </main>

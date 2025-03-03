@@ -1,19 +1,31 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { DevTool } from '@hookform/devtools'
-import { useResumePage } from "../../hooks";
+import { useResumePage, useFormHook } from "../../hooks";
 import { UserContact } from "../../types/types";
 
 export const UserContactForm = () => {
     const {
         updateCurrent
     } = useResumePage()
+
+    const {
+        updateEmail,
+        updatePhoneNumber,
+        updateFax,
+        updateLinkedInLink
+    } = useFormHook()
+
     const form = useForm<UserContact>()
-    const { control, register, handleSubmit, formState } = form
+    const { register, handleSubmit, formState } = form
     const { errors } = formState;
+
     const onSubmit: SubmitHandler<UserContact> = (data) => {
-        console.log('formResponse', data)
+        updatePhoneNumber(data.phoneNumber.toString())
+        updateEmail(data.email)
+        if(data.fax !== undefined) {updateFax(data.fax.toString())}
+        if(data.linkedInLink !== undefined) {updateLinkedInLink(data.linkedInLink.toString())}
         updateCurrent('for');
     }
+
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -81,7 +93,6 @@ export const UserContactForm = () => {
                     </button>
                 </div>
             </form>
-            <DevTool control={control} />
         </>
     )
 }

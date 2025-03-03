@@ -8,6 +8,7 @@ import {
     email,
     fax,
     firstName,
+    lastName,
     gender,
     linkedInLink,
     occupation,
@@ -15,7 +16,8 @@ import {
     profilePic,
     setState,
     zipcode,
-    file
+    file,
+    clearAcademy
 } from '../app/pagesStore/resumeInfo';
 
 export const useFormHook = () => {
@@ -30,8 +32,11 @@ export const useFormHook = () => {
     const updateFirstName = (name: string) => {
         dispatch(firstName(name));
     };
-    const updateDOB = (date: string) => {
-        dispatch(dob(date));
+    const updateLastName = (name: string) => {
+        dispatch(lastName(name));
+    };
+    const updateDOB = (date: Date) => {
+        dispatch(dob(date.toISOString()));
     };
     const updateOccupation = (job: string) => {
         dispatch(occupation(job));
@@ -63,8 +68,9 @@ export const useFormHook = () => {
     const updateZipcode = (zip: string) => {
         dispatch(zipcode(zip));
     };
-    const addAcademy = (ac: academy) => {
-        dispatch(academy(ac));
+    const addAcademy = (ac: academy[]) => {
+        dispatch(clearAcademy())
+        ac.forEach(school => dispatch(academy(school)))
     };
 
 
@@ -73,6 +79,7 @@ export const useFormHook = () => {
         updateProfilePic,
         updateLinkedInLink,
         updateFirstName,
+        updateLastName,
         updateDOB,
         updateOccupation,
         updateGender,

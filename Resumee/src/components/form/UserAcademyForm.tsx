@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
-import { useResumePage } from "../../hooks";
+import { useResumePage, useFormHook } from "../../hooks";
 import { Academy } from "../../types/types";
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -8,13 +8,14 @@ export const UserAcademyForm = () => {
     const {
         updateCurrent
     } = useResumePage()
+
+    const {
+        resumeInfo,
+        addAcademy
+    } = useFormHook()
     const form = useForm<Academy>({
         defaultValues: {
-            academy: [
-                {
-                    schoolName: ''
-                },
-            ]
+            academy: resumeInfo.academy
         }
     })
     const { control, register, handleSubmit, formState } = form
@@ -27,12 +28,13 @@ export const UserAcademyForm = () => {
 
     const onSubmit: SubmitHandler<Academy> = (data) => {
         console.log('formResponse', data)
+        addAcademy(data.academy)
         updateCurrent('for');
     }
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
-                <div>
+                <div className="p-[8em] h-auto">
                     <div id="input-cont" className="h-[40px] lg:w-[60%] md:w-[80%] mx-auto mb-7 flex justify-center align-middle flex-col">
                         <div className="flex justify-between">
                             <label className="text-md pt-2 pr-[2em] w-[250px]">School Name :</label>
@@ -47,11 +49,10 @@ export const UserAcademyForm = () => {
                         <div  className="h-auto">
                             {fields.map((field, index) => {
                                 return(
-                                    <div>
-                                        <span className="text-red-500">{errors.academy?.[0]?.schoolName?.message}</span>
+                                    <div key={field.id}>
+                                        <span className="text-red-500">{errors.academy?.[index]?.schoolName?.message}</span>
                                         <div className="flex gap-[1em] align-middle">
                                             <input
-                                                key={field.id}
                                                 placeholder={`School ${index+1}`}
                                                 className="border-2 px-2 mt-1 h-[50px] w-[70%] rounded-xl outline-0" 
                                                 {...register(`academy.${index}.schoolName` as const,

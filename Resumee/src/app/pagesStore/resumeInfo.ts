@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, isAction, PayloadAction } from '@reduxjs/toolkit';
 
 /**
  *  State management for user resume
@@ -14,7 +14,7 @@ export interface filemetadata {
     type: string;
 }
 export interface file {
-    localUrl: string;
+    localUrl: string | null;
     fileMetaD: filemetadata;
 }
 
@@ -85,6 +85,10 @@ export const resumeStateSlice = createSlice({
             state.firstName = action.payload;
         },
 
+        lastName: (state, action: PayloadAction<string>) => {
+            state.lastName = action.payload;
+        },
+
         dob: (state, action: PayloadAction<string>) => {
             state.dob = action.payload;
         },
@@ -129,6 +133,10 @@ export const resumeStateSlice = createSlice({
             state.academy.push(action.payload);
         },
 
+        clearAcademy: (state) => {
+            state.academy = []
+        },
+
         setState: (state, action: PayloadAction<string>) => {
             state.state = action.payload;
         },
@@ -144,13 +152,15 @@ export const {
     email,
     fax,
     firstName,
+    lastName,
     gender,
     linkedInLink,
     occupation,
     phoneNumber,
     profilePic,
     setState,
-    zipcode
+    zipcode,
+    clearAcademy
 } = resumeStateSlice.actions;
 
 export default resumeStateSlice.reducer;

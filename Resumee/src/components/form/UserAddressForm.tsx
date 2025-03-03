@@ -1,16 +1,30 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useResumePage } from "../../hooks";
+import { useResumePage, useFormHook } from "../../hooks";
 import { UserAddress } from "../../types/types";
 
 export const UserAddressForm = () => {
     const {
         updateCurrent
     } = useResumePage()
+
+    const {
+        updateAddress,
+        updateCity,
+        updateCountry,
+        updateState,
+        updateZipcode
+    } = useFormHook()
+
     const form = useForm<UserAddress>()
     const { register, handleSubmit, formState } = form
     const { errors } = formState;
+
     const onSubmit: SubmitHandler<UserAddress> = (data) => {
-        console.log('formResponse', data)
+        updateAddress(data.address)
+        updateCity(data.city)
+        updateState(data.state)
+        updateCountry(data.country)
+        updateZipcode(data.zipcode)
         updateCurrent('for');
     }
     return (

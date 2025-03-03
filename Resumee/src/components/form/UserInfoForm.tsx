@@ -1,19 +1,52 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 // import { DevTool } from '@hookform/devtools';
-import { useResumePage } from "../../hooks";
+import { useResumePage, useFormHook } from "../../hooks";
 import { UserInfo } from "../../types/types";
 
 export const UserInfoForm = () => {
     const {
         updateCurrent
     } = useResumePage()
+
+    const {
+        updateProfilePic,
+        updateFirstName,
+        updateLastName,
+        updateGender,
+        updateOccupation,
+        updateDOB
+    } = useFormHook()
+
     const form = useForm<UserInfo>()
     const { register, handleSubmit, formState } = form
     const { errors } = formState;
+
     const onSubmit: SubmitHandler<UserInfo> = (data) => {
+        const createLocalMediaURL = (file: File | null | undefined): string | null => {
+            if (!file) return null;
+            return URL.createObjectURL(file);
+        };
+
+        const fileInfo = {
+            localUrl: createLocalMediaURL(data.profilePicture[0] as unknown as File),
+            fileMetaD: {
+                name: data.profilePicture[0].name,
+                size: data.profilePicture[0].size,
+                type: data.profilePicture[0].type,
+                lastModified: data.profilePicture[0].lastModified,
+                webkitRelativePath: data.profilePicture[0].webkitRelativePath
+            }
+        }
+        updateProfilePic(fileInfo),
+        updateFirstName(data.firstName),
+        updateLastName(data.lastName)
+        updateGender(data.gender),
+        updateOccupation(data.occupation),
+        updateDOB(data.dob)
+
         updateCurrent('for');
-        console.log('formResponse', data)
     }
+
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
