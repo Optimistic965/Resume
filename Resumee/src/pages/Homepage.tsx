@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import Notify from '../components/Notification/Notify';
 
 export const Homepage = () => {
@@ -35,7 +35,10 @@ export const Homepage = () => {
 
     return (
             <main id="page_layout" className="bg-white w-screen h-screen relative">
-                <header className="bg-secondary h-10vh text-3xl p-3 mb-4 shadow-md shadow-tertiary-2 sticky top-0 left-0 uppercase">{pageTitle}</header>
+                <header className="bg-secondary h-10vh text-3xl p-3 mb-4 shadow-md shadow-tertiary-2 sticky top-0 left-0 flex justify-between">
+                    <p className='uppercase'>{pageTitle}</p>
+                    <NavLink className="text-xl align-bottom" to="/">home</NavLink>
+                </header>
                 <section className="main_cont">
                 <Outlet />
                 </section>

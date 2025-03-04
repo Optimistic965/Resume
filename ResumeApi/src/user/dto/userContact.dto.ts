@@ -12,14 +12,14 @@ export class UserContactDto {
 	@MaxLength(50)
 	email: string;
 
-	@IsInt()
-	@Type(() => Number)
+	@IsString()
+	// @Type(() => Number)
 	// @MinLength(13)
 	phoneNumber: number;
 
-	@IsInt()
-	@Type(() => Number)
-	@MaxLength(13)
+	@IsString()
+	// @Type(() => Number)
+	// @MaxLength(13)
 	@IsOptional()
 	faxNo?: number;
 

@@ -44,3 +44,33 @@ export interface UserAddress {
     country: string,
     zipcode: string,
 }
+
+export interface ResponseType {
+    id: number,
+    firstName: string,
+    lastName: string,
+    dob: string,
+    occupation: string,
+    gender: string,
+    profilePicture: string,
+    contact: {
+        id: number,
+        email: string,
+        phoneNumber: string,
+        fax?: string,
+        linkedInLink?: string,
+    },
+    address: {
+        id: number,
+        address: string,
+        city: string,
+        state: string,
+        country: string,
+        zipcode: string,
+    },
+    academics: {
+        id: number,
+        schoolName: string,
+        userId: number
+    }[]
+}

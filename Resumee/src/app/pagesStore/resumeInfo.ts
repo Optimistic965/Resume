@@ -23,7 +23,7 @@ export interface academy {
 }
 
 export interface ResumeState {
-    profileImage: file;
+    profileImage: any;
     firstName: string;
     lastName: string;
     dob: string;
@@ -56,7 +56,11 @@ const initialState: ResumeState = {
     state: "",
     country: "",
     zipcode: "",
-    academy: [],
+    academy: [
+        {
+            schoolName: ''
+        }
+    ],
     profileImage: {
         localUrl: '',
         fileMetaD: {
@@ -140,6 +144,8 @@ export const resumeStateSlice = createSlice({
         setState: (state, action: PayloadAction<string>) => {
             state.state = action.payload;
         },
+
+        clearStore: () => initialState
     },
 });
 
@@ -160,7 +166,8 @@ export const {
     profilePic,
     setState,
     zipcode,
-    clearAcademy
+    clearAcademy,
+    clearStore
 } = resumeStateSlice.actions;
 
 export default resumeStateSlice.reducer;

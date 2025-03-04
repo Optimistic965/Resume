@@ -1,6 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useResumePage, useFormHook } from "../../hooks";
 import { UserAddress } from "../../types/types";
+import Notify from "../Notification/Notify";
 
 export const UserAddressForm = () => {
     const {
@@ -38,6 +39,7 @@ export const UserAddressForm = () => {
     }
     return (
         <>
+            <Notify />
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
                 <div>
                     <div id="input-cont" className="h-[40px] lg:w-[60%] md:w-[80%] mx-auto mb-7 flex justify-center align-middle flex-col">

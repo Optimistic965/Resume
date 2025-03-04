@@ -17,7 +17,8 @@ import {
     setState,
     zipcode,
     file,
-    clearAcademy
+    clearAcademy,
+    clearStore,
 } from '../app/pagesStore/resumeInfo';
 
 export const useFormHook = () => {
@@ -73,6 +74,10 @@ export const useFormHook = () => {
         ac.forEach(school => dispatch(academy(school)))
     };
 
+    const clearInput = () => {
+        dispatch(clearStore())
+    }
+
 
     return ({
         resumeInfo,
@@ -92,5 +97,6 @@ export const useFormHook = () => {
         updateCountry,
         updateZipcode,
         addAcademy,
+        clearInput
     })
 }

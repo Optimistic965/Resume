@@ -14,7 +14,7 @@ export class UserContactTB {
 	email: string;
 
 	@Column({
-		type: "int",
+		type: "varchar",
 		nullable: false,
 		// length: 13,
 	})
